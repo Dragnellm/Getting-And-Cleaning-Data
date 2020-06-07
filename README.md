@@ -1,12 +1,18 @@
 # Getting-And-Cleaning-Data
 ##Recolección de Datos
+
 ##Descargar los datos y guardartos
+
 if(!file.exists("./data")){dir.create("./data")}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(fileUrl,destfile="./data/Dataset.zip",method="curl")
+
 ##El archivo se desgarga como un zip, a continuación se usa una función para descomprimirlo
+
 unzip(zipfile="./data/Dataset.zip",exdir="./data")
+
 ##Ahora los archivos descomprimidos se encuentran en la carpeta UCI HAR Dataset, a continuación se obtendrá una lista de los archivos
+
 path_rf <- file.path("./data" , "UCI HAR Dataset")
 files<-list.files(path_rf, recursive=TRUE)
 files
@@ -17,9 +23,11 @@ dataActivityTrain <- read.table(file.path(path_rf, "train", "Y_train.txt"),heade
 ## Se leen los archivos de "Subject"
 dataSubjectTrain <- read.table(file.path(path_rf, "train", "subject_train.txt"),header = FALSE)
 dataSubjectTest  <- read.table(file.path(path_rf, "test" , "subject_test.txt"),header = FALSE)
+
 ##Se leen los archivos de "Features" 
 dataFeaturesTest  <- read.table(file.path(path_rf, "test" , "X_test.txt" ),header = FALSE)
 dataFeaturesTrain <- read.table(file.path(path_rf, "train", "X_train.txt"),header = FALSE)
+
 ## Se miran las propiedades de las variables 
 str(dataActivityTest)
 str(dataActivityTrain)
